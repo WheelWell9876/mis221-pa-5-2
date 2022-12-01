@@ -307,7 +307,7 @@ static bool AccessReports(Movie[] myMovies, Payment[] myPayments, Person[] myPer
         System.Console.WriteLine("7. Currently rented movies.");
         System.Console.WriteLine("8. Rentals per Genre.");
         System.Console.WriteLine("9. Rentals per Title.");
-        System.Console.WriteLine("10. Top five movies rented.(Does not work)");
+        System.Console.WriteLine("10. Top five movies rented.");
         System.Console.WriteLine("11. Top five movies rented per genre.(Does not work)");
         System.Console.WriteLine("12. Print all transactions.");
         System.Console.WriteLine("13. Total tansactions.");
@@ -353,10 +353,10 @@ static bool AccessReports(Movie[] myMovies, Payment[] myPayments, Person[] myPer
                 paymentReports.RentalsPerTitle(myPayments, paymentUtility, file);
                 AdminOption = true;
                 break;
-            // case "10":
-            //     movieReports.TopFiveMovies(myMovies, myPayments, paymentUtility, paymentReports, file);
-            //     AdminOption = true;
-            //     break;
+            case "10":
+                paymentReports.TopFiveMovies(myPayments, paymentUtility, file);
+                AdminOption = true;
+                break;
             // case "11":
             //     movieReports.TopFivePerGenre(myMovies, myPayments, paymentUtility, paymentReports, file);
             //     AdminOption = true;

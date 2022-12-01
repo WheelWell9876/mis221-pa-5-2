@@ -237,8 +237,9 @@ namespace calculations
         //process break
         private void ProcessBreakRentalsPerGenre(ref string currGenre, ref int count, int i, Payment[] myPayments)
         {
-            currGenre = myPayments[i].GetGenre(); //makes genre a new one
             System.Console.WriteLine(currGenre + "\t\t" + count); //print results
+            currGenre = myPayments[i].GetGenre(); //makes genre a new ones
+            count = 0;
         }
 
         public void RentalsPerTitle(Payment[] myPayments, PaymentUtility paymentUtility, FileItem file)
@@ -268,12 +269,12 @@ namespace calculations
         //process break
         private void ProcessBreakRentalsPerTitle(ref string currTitle, ref int count, int i, Payment[] myPayments)
         {
-            currTitle = myPayments[i].GetTitle(); //makes genre a new one
             System.Console.WriteLine(currTitle + "\t\t" + count); //print results
+            currTitle = myPayments[i].GetTitle(); //makes genre a new one
+            count = 0;
         }
 
-        ////top five movies//////
-
+        //////////top five movies////////////
         public void TopFiveMovies(Payment[] myPayments, PaymentUtility paymentUtility, FileItem file)
         {
             Console.Clear();

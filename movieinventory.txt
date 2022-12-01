@@ -1,6 +1,9 @@
 1#The Godfather#Family#1999#9.99#5#True#False
 2#Pulp Fiction#Family#2010#9.99#8#True#False
-3#Elf#Romance#2001#9.99#10#True#False
+3#Santa Claus#Family#2001#9.99#10#True#False
 4#American Psycho#Other#2019#9.99#3#True#False
 5#Car Go Fast 42#Action#1981#9.99#6#True#False
 6#The Sopranos#Horror#2020#9.99#7#True#False
+7#The Dark Knight#Action#2008#9.99#8#True#False
+8#Fight Club#Action#1999#9.99#9#True#False
+9#The Matrix#
