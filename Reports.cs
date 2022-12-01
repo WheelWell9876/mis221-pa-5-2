@@ -129,6 +129,7 @@ namespace calculations
 
         public void MoviesByRating(Movie[] myMovies, MovieUtility movieUtility, FileItem file)
         {
+            Console.Clear();
             int count = 1;
             string currMovie = myMovies[0].GetTitle();
             double sum = myMovies[0].GetRating();
@@ -279,6 +280,7 @@ namespace calculations
         {
             Console.Clear();
             myPayments = file.GetAllPayments();
+            file.GetAllPayments();
             paymentUtility.SortGenre();
             string currTitle = myPayments[0].GetTitle();
             int count = 1;
@@ -332,6 +334,7 @@ namespace calculations
         //adds total amount of transactions that have taken place, without the price
         public int TotalPayments(Payment[] myPayments, FileItem file)
         {
+            Console.Clear();
             file.GetAllPayments();
             System.Console.WriteLine("**********Total PAYMENT Count**********");
             for(int i = 0; i < Payment.GetCount(); i++)
@@ -346,6 +349,7 @@ namespace calculations
         //adds total prices of movies together from all trasactions that have taken place
         public void TotalRevenue(Payment[] myPayments, FileItem file)
         {
+            Console.Clear();
             double totalRevenue = 0.0;
             file.GetAllPayments();
             System.Console.WriteLine("**********Total Revenue**********");
@@ -359,6 +363,7 @@ namespace calculations
         //print all payments with their information from payments.txt
         public void PrintAllPayments(Payment[] myPayments, FileItem file)
         {
+            Console.Clear();
             myPayments = file.GetAllPayments(); 
             file.GetAllPayments();
             System.Console.WriteLine("********************Transactions listed by ID********************");
@@ -397,6 +402,7 @@ namespace calculations
 
         public void RentalsPerPerson(Person[] myPersons, PersonUtility personUtility, FileItem file)
         {
+            Console.Clear();
             int count = 1; //start with first title, say its one
             myPersons = file.GetAllPersons();
             file.GetAllPayments(); //get payments
@@ -420,13 +426,15 @@ namespace calculations
         //process break
         private void ProcessBreakRentalsPerPerson(ref string currTitle, ref int count, int i)
         {
-            currTitle = myPersons[i].GetEmail(); //makes genre a new one
             System.Console.WriteLine(currTitle + "\t" + count); //print results
+            currTitle = myPersons[i].GetEmail(); //makes genre a new one
+            count = 0;
         }
 
         //this is a function to print all of the persons from the persons.txt file separted by a tab, this will appear in the console
         public void PrintAllPersons(Person[] myPersons, FileItem file)
         {
+            Console.Clear();
             myPersons = file.GetAllPersons();
             file.GetAllPersons();
             System.Console.WriteLine("********************Persons listed by ID********************");
@@ -440,6 +448,7 @@ namespace calculations
 
         public int TotalPersons(Person[] myPersons, FileItem file)
         {
+            Console.Clear();
             file.GetAllPersons();
             System.Console.WriteLine("**********Total PERSON Count**********");
             for(int i = 0; i < Person.GetCount(); i++)

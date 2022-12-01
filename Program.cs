@@ -123,10 +123,10 @@ static bool ExistingCustomerMenu(Movie[] myMovies, Payment[] myPayments, Person[
                         movieReports.CurrentlyAvailable(myMovies, file);
                         CustomerOption = true;
                         break;
-                    // case "3":
-                    //     movieReports.TopFiveMovies(myMovies, myPayments, paymentUtility, paymentReports, file);
-                    //     SelectOption = true;
-                    //     break;
+                    case "3":
+                        paymentReports.TopFiveMovies(myPayments, paymentUtility, file);
+                        SelectOption = true;
+                        break;
                     case "4":
                         movieReports.PrintByGenre(myMovies, movieUtility, file);
                         CustomerOption = true;
