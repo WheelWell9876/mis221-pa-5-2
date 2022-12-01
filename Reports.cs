@@ -167,6 +167,37 @@ namespace calculations
             
         }
 
+        static int BinarySearch(Movie[] myMovies, MovieUtility movieUtility, MovieReports movieReports, int searchVal)
+        {
+            int find = -1;
+            int first = 0;
+            int last = Movie.GetCount() - 1;
+            int middle;
+            bool found = false;
+
+            while(!found && first <= last)
+            {
+                middle = (first + last) / 2;
+                if(myMovies[middle].GetMovieID() == searchVal)
+                {
+                    found = true;
+                    find = middle;
+                }
+                else
+                {
+                    if(myMovies[middle].GetMovieID() > searchVal)
+                    {
+                        last = middle - 1;
+                    }
+                    else
+                    {
+                        first = middle + 1;
+                    }
+                }
+            }
+            return find;
+        }
+
     }
 
     //////////////PAYMENT REPORT CLASS//////////////
@@ -182,6 +213,7 @@ namespace calculations
         //required part, need to find the amount of rentals in the genre
         public void RentalsPerGenre(Payment[] myPayments, PaymentUtility paymentUtility, FileItem file)
         {
+            Console.Clear();
             int count = 1; //start with first genre, say its one
             myPayments = file.GetAllPayments();
             file.GetAllPayments(); //get payments
@@ -196,21 +228,22 @@ namespace calculations
                 }
                 else
                 {
-                    ProcessBreakRentalsPerGenre(ref currGenre, ref count, i); //break out of current genre, start counting the next
+                    ProcessBreakRentalsPerGenre(ref currGenre, ref count, i, myPayments); //break out of current genre, start counting the next
                 }
             }
-            ProcessBreakRentalsPerGenre(ref currGenre, ref count, 0);
+            ProcessBreakRentalsPerGenre(ref currGenre, ref count, 0, myPayments);
             System.Console.WriteLine("***************************************************************");
         }
         //process break
-        private void ProcessBreakRentalsPerGenre(ref string currGenre, ref int count, int i)
+        private void ProcessBreakRentalsPerGenre(ref string currGenre, ref int count, int i, Payment[] myPayments)
         {
             currGenre = myPayments[i].GetGenre(); //makes genre a new one
-            System.Console.WriteLine(currGenre + "\t" + count); //print results
+            System.Console.WriteLine(currGenre + "\t\t" + count); //print results
         }
 
         public void RentalsPerTitle(Payment[] myPayments, PaymentUtility paymentUtility, FileItem file)
         {
+            Console.Clear();
             int count = 1; //start with first title, say its one
             myPayments = file.GetAllPayments();
             file.GetAllPayments(); //get payments
@@ -226,84 +259,75 @@ namespace calculations
                 }
                 else
                 {
-                    ProcessBreakRentalsPerTitle(ref currTitle, ref count, i); //break out of current title, start counting the next
+                    ProcessBreakRentalsPerTitle(ref currTitle, ref count, i, myPayments); //break out of current title, start counting the next
                 }
             }
-            ProcessBreakRentalsPerTitle(ref currTitle, ref count, 0);
+            ProcessBreakRentalsPerTitle(ref currTitle, ref count, 0, myPayments);
             System.Console.WriteLine("***************************************************************");
         }
         //process break
-        private void ProcessBreakRentalsPerTitle(ref string currTitle, ref int count, int i)
+        private void ProcessBreakRentalsPerTitle(ref string currTitle, ref int count, int i, Payment[] myPayments)
         {
             currTitle = myPayments[i].GetTitle(); //makes genre a new one
-            System.Console.WriteLine(currTitle + "\t" + count); //print results
+            System.Console.WriteLine(currTitle + "\t\t" + count); //print results
         }
 
         ////top five movies//////
-        // public void TopFiveMovies(Payment[] myPayments, MovieUtility movieUtility, PaymentUtility paymentUtility, PaymentReports paymentReports, FileItem file)
-        // {
-        //     int count = 1;
-        //     myPayments = file.GetAllPayments();
-        //     string[] titles = new string[100];
-        //     int[] rentalTotals = new int[100];
-        //     int arraySlot = 0;
-        //     Payment[] myPayments = new Payment();
-        //     movieUtility.SortTitle();
-        //     string currTitle = myPayments[0].GetTitle();
-        
-        //     for(int i = 1; i < Payment.GetCount(); i++)
-        //     {
-        //         if(currTitle == myPayments[i].GetTitle())
-        //         {
-        //             count++;
-        //         }
-        //         if(currTitle != myPayments[i].GetTitle())
-        //         {
-        //             ProcessBreak3(myPayments, ref currTitle, ref count, 0, titles, rentalTotals, ref arraySlot);
-        //         }
-        //     }
-        //     paymentReports.RentalsPerTitle(myPayments, paymentUtility, file);
-        //     System.Console.WriteLine("--------Top Five Movies--------");
-        // }
 
-        public void ProcessBreak3(Payment[] myPayments, ref string currTitle, ref int count,int i, string[] titles, int[] rentalTotals, ref int arraySlot)
+        public void TopFiveMovies(Payment[] myPayments, PaymentUtility paymentUtility, FileItem file)
         {
-            rentalTotals[arraySlot] = count;
-            titles[arraySlot] = currTitle;
-            arraySlot++;
-            currTitle = myPayments[i].GetTitle();
-            count = 1;
-        }
-
-        public void SwapTwo(int i, int j, int[] rentalTotals, string[] titles)
-        {
-            string temp = titles[i];
-            titles[i] = titles[j];
-            titles[j] = temp;
-            int temp2 = rentalTotals[i];
-            rentalTotals[i] = rentalTotals[j];
-            rentalTotals[j] = temp2;
-        }
-
-        public void SortTopFive(int[] rentalTotals, string[] titles)
-        {
-            int max;
-            for(int i = 0; i < 4; i++)
+            Console.Clear();
+            myPayments = file.GetAllPayments();
+            paymentUtility.SortGenre();
+            string currTitle = myPayments[0].GetTitle();
+            int count = 1;
+            for(int i = 0; i < Payment.GetCount(); i++)
             {
-                max = i;
-                for(int j = i + 1; j < 5; j++)
+                if(myPayments[i].GetTitle() == currTitle)
                 {
-                    if(rentalTotals[j] <= rentalTotals[max]){
-                        SwapTwo(i, j, rentalTotals, titles);
-                    }
-                    if(rentalTotals[max].CompareTo(rentalTotals[j]) != 0)
-                    {
-                        SwapTwo(i, j, rentalTotals, titles);
-                    }
+                    count++;
+                }
+                else
+                {
+                    ProcessBreak3(ref currTitle, ref count, ref i, myPayments);
                 }
             }
         }
 
+        static void ProcessBreak3(ref string currTitle, ref int count, ref int i, Payment[] myPayments)
+        {
+            int[] saveCount = new int [Payment.GetCount()];
+            string[] title = new string[Payment.GetCount()];
+            currTitle = myPayments[i].GetTitle();
+            title[i] = currTitle;
+            count = 1;
+            for(int j = 0; j < saveCount.Length + 1; j++)
+            {
+                int min = j;
+                for(int k = 0; k < saveCount.Length; k++)
+                {
+                    if(saveCount[k] < saveCount[min])
+                    {
+                        min = j;
+                    }
+                    if(min != j)
+                    {
+                        SwapTwo(saveCount, min, j);
+                    }
+                }
+                for(int m = 0; m < 5; m++)
+                {
+                    System.Console.WriteLine(title[m]);
+                }
+            }
+        }
+
+        static void SwapTwo(int[] saveCount, int x, int y)
+        {
+            int temp = saveCount[x];
+            saveCount[x] = saveCount[y];
+            saveCount[y] = temp;
+        }
         //adds total amount of transactions that have taken place, without the price
         public int TotalPayments(Payment[] myPayments, FileItem file)
         {
@@ -343,6 +367,7 @@ namespace calculations
             }
             System.Console.WriteLine("***************************************************************");
         }
+
     }
 
     //////////////PERSON REPORT CLASS//////////////

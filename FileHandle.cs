@@ -74,11 +74,13 @@ namespace fileItem
         //payment save
         public void SavePayment(Payment[] myPayments)
         {
+
             StreamWriter outFile = new StreamWriter("payments.txt");
             for(int i = 0; i < Payment.GetCount(); i++)
             {
                 outFile.WriteLine(myPayments[i].ToFile());
             }
+            File.AppendAllText("payments.txt", Environment.NewLine);
             outFile.Close();
         }
 

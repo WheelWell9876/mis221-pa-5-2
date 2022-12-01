@@ -87,7 +87,7 @@ namespace paymentItem
         {
             return buyDate;
         }
-        public void SetReturn(DateTime returnDate) //adds one week onto buy date, punishes customer for returning late
+        public void SetReturn(DateOnly returnDate) //adds one week onto buy date, punishes customer for returning late
         {
             this.returnDate = DateOnly.FromDateTime(DateTime.Today);
         }

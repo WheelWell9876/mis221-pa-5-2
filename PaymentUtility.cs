@@ -114,20 +114,7 @@ namespace paymentUtility
             myPayments[y] = temp;
         }
 
-        // public static int ReadInteger() 
-        // {
-        //     bool nice = true;
-        //     while(nice == true) 
-        //     {
-        //         var input = Console.ReadLine();
-        //         var num = input;
-        //         if(int.TryParse(input, out num))
-        //         {
-        //             return num;
-        //         }
-        //     }
-        // }
-        public static DateOnly PromptDateOnly()
+        public DateOnly PromptDateOnly()
         {
             Console.WriteLine("Day: ");
             var day = Convert.ToInt32(Console.ReadLine());

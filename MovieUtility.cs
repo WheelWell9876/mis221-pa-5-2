@@ -26,7 +26,7 @@ namespace movieUtility
         {
             for(int i = 0; i < Movie.GetCount(); i++)
             {
-                if(myMovies[i].GetMovieID() == searchVal) return i;
+                if(myMovies[i].GetMovieID().CompareTo(searchVal) == 0) return i;
             }
             return -1;
         }

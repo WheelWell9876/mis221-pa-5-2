@@ -77,7 +77,6 @@ namespace movieItem
         }
         public double GetRating()
         {
-            rating += 1;
             return rating;
         }
         public void SetAvailibility(bool availibility) //movie is either available or it is not, I am not sure how this is going to appear in movieinventory.txt
