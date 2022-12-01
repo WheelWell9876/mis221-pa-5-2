@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "pa5-WheelWell9876/1.0.0": {
+        "runtime": {
+          "pa5-WheelWell9876.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "pa5-WheelWell9876/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,15 @@
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/bin/Debug/net6.0/pa5-WheelWell9876
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/bin/Debug/net6.0/pa5-WheelWell9876.deps.json
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/bin/Debug/net6.0/pa5-WheelWell9876.runtimeconfig.json
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/bin/Debug/net6.0/pa5-WheelWell9876.dll
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/bin/Debug/net6.0/pa5-WheelWell9876.pdb
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/pa5-WheelWell9876.csproj.AssemblyReference.cache
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/pa5-WheelWell9876.GeneratedMSBuildEditorConfig.editorconfig
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/pa5-WheelWell9876.AssemblyInfoInputs.cache
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/pa5-WheelWell9876.AssemblyInfo.cs
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/pa5-WheelWell9876.csproj.CoreCompileInputs.cache
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/pa5-WheelWell9876.dll
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/refint/pa5-WheelWell9876.dll
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/pa5-WheelWell9876.pdb
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/pa5-WheelWell9876.genruntimeconfig.cache
+/Users/thomasnumnum/Desktop/School 2/fall-2022/MIS/pa5-WheelWell9876/obj/Debug/net6.0/ref/pa5-WheelWell9876.dll
