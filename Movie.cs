@@ -8,13 +8,11 @@ namespace movieItem
         private int year;
         private double price;
         private int rating;
-        private double totalRating;
-        private int timesRented;
         private bool availibility;
         private static int count;
         private bool deleted;
 
-        public Movie(int movieID, string title, string genre, int year, double price, int rating, double totalRating, int timesRented, bool availibility, bool deleted)
+        public Movie(int movieID, string title, string genre, int year, double price, int rating, bool availibility, bool deleted)
         {
             this.movieID = movieID;
             this.title = title;
@@ -22,8 +20,6 @@ namespace movieItem
             this.year = year;
             this.price = price;
             this.rating = rating;
-            this.totalRating = totalRating;
-            this.timesRented = timesRented;
             this.availibility = availibility;
             this.deleted = deleted;
             int i = count;
@@ -84,24 +80,6 @@ namespace movieItem
             rating += 1;
             return rating;
         }
-        public void SetTotalRating(double totalRating)
-        {
-            this.totalRating = totalRating;
-        }
-        public double GetTotalRating()
-        {
-            totalRating = rating / timesRented;
-            return totalRating;
-        }
-        public void SetTimesRented(int timesRented)
-        {
-            this.timesRented = timesRented;
-        }
-        public int GetTimesRented()
-        {
-            timesRented += 1;
-            return timesRented;
-        }
         public void SetAvailibility(bool availibility) //movie is either available or it is not, I am not sure how this is going to appear in movieinventory.txt
         {
             this.availibility = availibility;
@@ -146,12 +124,12 @@ namespace movieItem
 
         public override string ToString()
         {
-            return movieID + "\t" + title + "\t" + genre + "\t" + year + "\t" + price + "\t" + rating + "\t" + totalRating + "\t" + timesRented + "\t" + availibility + "\t" + deleted;
+            return movieID + "\t" + title + "\t" + genre + "\t" + year + "\t" + price + "\t" + rating + "\t" + availibility + "\t" + deleted;
         }
 
         public string ToFile()
         {
-            return movieID + "#" + title + "#" + genre + "#" + year + "#" + price + "#" + rating + "#" + totalRating + "#" + timesRented + "#" + availibility + "#" + deleted;
+            return movieID + "#" + title + "#" + genre + "#" + year + "#" + price + "#" + rating + "#" + availibility + "#" + deleted;
         }
     }    
 }

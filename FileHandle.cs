@@ -29,7 +29,7 @@ namespace fileItem
             {
                 string[] temp = line.Split("#");
                 myMovies[Movie.GetCount()] = new Movie((int.Parse(temp[0])), temp[1], temp[2], (int.Parse(temp[3])),
-                (double.Parse(temp[4])), (int.Parse(temp[5])), (double.Parse(temp[6])), (int.Parse(temp[7])), (bool.Parse(temp[8])), (bool.Parse(temp[9])));
+                (double.Parse(temp[4])), (int.Parse(temp[5])), (bool.Parse(temp[6])), (bool.Parse(temp[7])));
                 //movie count
                 Movie.IncCount();
                 line = infile.ReadLine(); //update read
@@ -63,7 +63,7 @@ namespace fileItem
             {
                 string[] temp = line.Split("#");
                 myPayments[Payment.GetCount()] = new Payment(int.Parse(temp[0]), temp[1], int.Parse(temp[2]), 
-                temp[3], temp[4], (double.Parse(temp[5])), DateTime.Parse(temp[6]), DateTime.Parse(temp[7]));
+                temp[3], temp[4], (double.Parse(temp[5])), DateOnly.Parse(temp[6]), DateOnly.Parse(temp[7]));
                 //item count
                 Payment.IncCount();
                 line = inFile.ReadLine();

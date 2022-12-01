@@ -8,11 +8,11 @@ namespace paymentItem
         private string title;
         private string genre;
         private double price;
-        public DateTime buyDate;
-        public DateTime returnDate;
+        public DateOnly buyDate;
+        public DateOnly returnDate;
         private static int count;
 
-        public Payment(int transID, string email, int movieID, string title, string genre, double price, DateTime buyDate, DateTime returnDate)
+        public Payment(int transID, string email, int movieID, string title, string genre, double price, DateOnly buyDate, DateOnly returnDate)
         {
             this.transID = transID;
             this.email= email;
@@ -79,19 +79,19 @@ namespace paymentItem
         {
             return price;
         }
-        public void SetBuy(DateTime buyDate) //gets current day
+        public void SetBuy(DateOnly buyDate) //gets current day
         {
-            this.buyDate = DateTime.Today;
+            this.buyDate = DateOnly.FromDateTime(DateTime.Today);
         }
-        public DateTime GetBuy()
+        public DateOnly GetBuy()
         {
             return buyDate;
         }
         public void SetReturn(DateTime returnDate) //adds one week onto buy date, punishes customer for returning late
         {
-            this.returnDate = DateTime.Today;
+            this.returnDate = DateOnly.FromDateTime(DateTime.Today);
         }
-        public DateTime GetReturn()
+        public DateOnly GetReturn()
         {
             return returnDate;
         }
@@ -123,7 +123,7 @@ namespace paymentItem
         
         public override string ToString()
         {
-            return transID + "\t" + email + "\t" + movieID + "\t" + title + "\t" + genre + "\t" + buyDate + "\t" + returnDate;
+            return transID + "\t" + email + "\t" + movieID + "\t" + title + "\t" + genre + "\t" + price + "\t" +buyDate + "\t" + returnDate;
         }
 
         public string ToReturnString()
@@ -133,7 +133,8 @@ namespace paymentItem
 
         public string ToFile()
         {
-            return transID + "#" + email + "#" + movieID + "#" + title + "#" + genre + "#" + buyDate + "#" + returnDate;
+            return transID + "#" + email + "#" + movieID + "#" + title + "#" + genre + "#" + price + "#" + buyDate + "#" + returnDate;
         }
+        //int transID, string email, int movieID, string title, string genre, double price, DateOnly buyDate, DateOnly returnDate
     }
 }

@@ -22,6 +22,14 @@ namespace movieUtility
             return -1;
         }
         
+        public int NewFind(int searchVal)
+        {
+            for(int i = 0; i < Movie.GetCount(); i++)
+            {
+                if(myMovies[i].GetMovieID() == searchVal) return i;
+            }
+            return -1;
+        }
 
         //tool to get admin to add new movie to text file
         public int NewMovie(int newValue)

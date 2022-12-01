@@ -1,6 +1,6 @@
-1#The Guy#Family#1999#9.9#9#4.5#6#True#False
-2#Cool Guy#Family#2010#7.8#4#4.5#8#True#False
-3#BAD WOMEN#Romance#2001#3.9#1#4.5#2#True#False
-4#THE TABLE#Other#2019#7#2#4.5#1#True#False
-5#JUSTIN#Action#1981#1.4#3#4.5#3#True#False
-6#Thomas#Horror#2020#5.7#1#4.5#9#True#False
+1#The Godfather#Family#1999#9.99#777#True#False
+2#Pulp Fiction#Family#2010#9.99#777#True#False
+3#Elf#Romance#2001#9.99#777#True#False
+4#American Psycho#Other#2019#9.99#777#True#False
+5#Car Go Fast 42#Action#1981#9.99#777#True#False
+6#The Sopranos#Horror#2020#9.99#777#True#False

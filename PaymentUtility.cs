@@ -113,5 +113,32 @@ namespace paymentUtility
             myPayments[x] = myPayments[y];
             myPayments[y] = temp;
         }
+
+        // public static int ReadInteger() 
+        // {
+        //     bool nice = true;
+        //     while(nice == true) 
+        //     {
+        //         var input = Console.ReadLine();
+        //         var num = input;
+        //         if(int.TryParse(input, out num))
+        //         {
+        //             return num;
+        //         }
+        //     }
+        // }
+        public static DateOnly PromptDateOnly()
+        {
+            Console.WriteLine("Day: ");
+            var day = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Month: ");
+            var month = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Year: ");
+            var year = Convert.ToInt32(Console.ReadLine());
+
+            return new DateOnly(year, month, day);
+        }
     }
 }

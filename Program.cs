@@ -93,9 +93,7 @@ static bool ExistingCustomerMenu(Movie[] myMovies, Payment[] myPayments, Person[
         // SelectOption = true;
         System.Console.WriteLine(" ");
         while(SelectOption == true)
-        {
-            
-            
+        {   
             while(CustomerOption == true)
             {
                 System.Console.WriteLine(" ");
@@ -145,7 +143,7 @@ static bool ExistingCustomerMenu(Movie[] myMovies, Payment[] myPayments, Person[
                         CustomerOption = true;
                         break;
                     case "8":
-                        RentMovie(myMovies, myPayments, movieUtility, movieReports, file);
+                        RentMovie(myMovies, myPayments, myPersons, movieUtility, paymentUtility, personUtility, movieReports, paymentReports, personReports, file);
                         CustomerOption = true;
                         break;
                     case "9":
@@ -394,41 +392,64 @@ static bool AccessReports(Movie[] myMovies, Payment[] myPayments, Person[] myPer
 }
 
 ////USER RENTS A MOVIE////
-static void RentMovie(Movie[] myMovies, Payment[] myPayments, MovieUtility movieUtility, MovieReports movieReports, FileItem file)
+static void RentMovie(Movie[] myMovies, Payment[] myPayments, Person[] myPersons, MovieUtility movieUtility, PaymentUtility paymentUtility, PersonUtility personUtility, MovieReports movieReports, PaymentReports paymentReports, PersonReports personReports, FileItem file)
 {
-    myPayments = file.GetAllPayments();
-    file.GetAllPayments();
-    Payment newPayment = new Payment();
-    System.Console.WriteLine("Here is our list of movies.");
+    System.Console.WriteLine("entered method");
+    // myPayments = file.GetAllPayments();
+    // System.Console.WriteLine("past first Payment");
+    // file.GetAllPayments();
+    // System.Console.WriteLine("past PAYMENT files");
+    myMovies = new Movie[100];
+    myMovies = file.GetAllMovies();
+    // System.Console.WriteLine("past first Movie");
+    // file.GetAllMovies();
+    // System.Console.WriteLine("past ALL files");
+    myPersons = file.GetAllPersons();
+    // file.GetAllPersons();
+
+    System.Console.WriteLine("***********Here is our list of movies.***********");
     movieReports.PrintAllMovies(myMovies, file);
     System.Console.WriteLine("Please select the movie you would like by typing the movie ID.");
-    int selectedMovie = (int.Parse(Console.ReadLine()));
-    int index = movieUtility.FindMovie(selectedMovie);
-    // DateTime returnDate = returnDate.AddDays(7);
-    System.Console.WriteLine(index);
-    if(index != -1)
-    {
-        myPayments[index] = new Payment();
-        Payment.IncCount();
-        myPayments[index].SetTransID(Payment.GetCount() + 1);
-        myPayments[index].SetTitle(myMovies[index].GetTitle());
-        myPayments[index].SetEmail(myPayments[index].GetEmail());
-        myPayments[index].SetMovieID(Payment.GetCount() + 1);
-        myPayments[index].SetGenre(myPayments[index].GetGenre());
-        myPayments[index].SetPrice(9.99);
-        myPayments[index].SetBuy(DateTime.Today); //gets current date for later usage
-        myPayments[index].SetReturn(DateTime.Today);
-        // myMovies[selectedMovie].SetTimesRented() += 1;
-    }
-    // if(index == -1)
-    // {
-    //     System.Console.WriteLine("Invalid input, please enter a valid movid ID.");
-    // }
+
+    int newID = (int.Parse(Console.ReadLine()));
+    int index = movieUtility.NewFind(newID);
+
+    System.Console.WriteLine(newID);
+    System.Console.WriteLine(myMovies[newID].GetTitle());
+    Console.ReadKey();
+
+    int transID = Payment.GetCount();
+    string payEmail = myPersons[newID].GetEmail();
+    string movTitle = myMovies[newID].GetTitle();
+    int payID = Movie.GetCount();
+    string movGenre = myMovies[newID].GetGenre();
+    int movYear = myMovies[newID].GetYear();
+    double goodPrice = myMovies[newID].GetPrice();
+    int rate = (int)myMovies[newID].GetRating();
+    DateOnly rentingDate = DateOnly.FromDateTime(DateTime.Today);
+    DateOnly returningDate = DateOnly.FromDateTime(DateTime.Today);
+    returningDate = returningDate.AddDays(7);
+    myMovies[newID].SetAvailibility(false);
+    bool inventory = false;
+    bool deleted = false;
+    System.Console.WriteLine(rate + "\t" + goodPrice);
+
+    myMovies[newID] = new Movie(newID, movTitle, movGenre, movYear, goodPrice, rate, inventory, deleted);
+    myPayments[Payment.GetCount()] = new Payment(transID, payEmail, payID, movTitle, movGenre, goodPrice, rentingDate, returningDate);
+    //int movieID, string title, string genre, int year, double price, int rating, bool availibility, bool deleted
+    // PAYMENT int transID, string email, int movieID, string title, string genre, double price, DateOnly buyDate, DateOnly returnDate
+    
+
+    myPayments[newID] = new Payment();
+    Payment.IncCount();
+
+    // myPayments[index].SetPrice(9.99)
+
     StreamWriter outFile = new StreamWriter("payments.txt", true);
-    outFile.WriteLine(myPayments[index].ToFile());
+    outFile.WriteLine(myPayments[newID].ToFile());
     file.SavePayment(myPayments); //writes new transaction to file on a new line
     System.Console.WriteLine("****************************************************");
-    System.Console.WriteLine($"Congradulations! You have rented a movie! Return it on {DateTime.Today} .......Or you will be fined one million dollars per day.");
+    System.Console.WriteLine($"Congradulations! You have rented a movie! Return it on {returningDate} .......Or you will be fined one million dollars per day!");
     System.Console.WriteLine("****************************************************");
 }
 
@@ -444,6 +465,9 @@ static void ReturnMovie(Movie[] myMovies, MovieUtility movieUtility, MovieReport
     if(index != -1)
     {
         myMovies[index].SetAvailibility(true); //soft add
+        System.Console.WriteLine("What would you rate this movie? Please select 1-10 (1 is terrible, 10 is excellent)");
+        int addRating = int.Parse(Console.ReadLine());
+        myMovies[index].SetRating(addRating);
     }
     StreamWriter outFile = new StreamWriter("movieinventory.txt", true);
     outFile.WriteLine(myMovies[index].ToFile());
@@ -485,8 +509,6 @@ static void AddMovie(MovieReports movieReports, Movie[] myMovies, MovieUtility m
         System.Console.WriteLine("What is the price?");
         myMovies[index].SetPrice(double.Parse(Console.ReadLine()));
         myMovies[index].SetRating(0);
-        myMovies[index].SetTotalRating(0.0);
-        myMovies[index].SetTimesRented(0);
         System.Console.WriteLine("Would you like to make this movie availible for purchase? Type 'true' or 'false'"); //availability
         myMovies[index].SetAvailibility(bool.Parse(Console.ReadLine()));
         myMovies[index].SetDeleted(false);
@@ -572,8 +594,6 @@ static void EditMovie(Movie[] myMovies, MovieUtility movieUtility, MovieReports 
         myMovies[index].SetPrice(double.Parse(Console.ReadLine()));
         System.Console.WriteLine("Is the movie availible for purchase? Type 'true' for 'YES' or 'false' for 'NO'.");
         myMovies[index].SetAvailibility(bool.Parse(Console.ReadLine()));
-        System.Console.WriteLine("How many times has this movie been rented?");
-        myMovies[index].SetTimesRented(int.Parse(Console.ReadLine()));
     }
     file.SaveMovie(myMovies);
     // StreamWriter outFile = new StreamWriter("persons.txt", true);
@@ -601,9 +621,9 @@ static void EditPayment(Payment[] myPayments, PaymentUtility paymentUtility, Pay
         System.Console.WriteLine("What should the genre be?");
         myPayments[index].SetGenre(Console.ReadLine());
         System.Console.WriteLine("What should the last purchased date be?");
-        myPayments[index].SetBuy(DateTime.Parse(Console.ReadLine()));
-        System.Console.WriteLine("What should the last returned date be?");
-        myPayments[index].SetReturn(DateTime.Parse(Console.ReadLine()));
+        // myPayments[index].SetBuy() = paymentUtility.PromptDateOnly();
+        // System.Console.WriteLine("What should the last returned date be?");
+        // myPayments[index].SetReturn(DateOnly.Parse());
     }
     file.SavePayment(myPayments);
 }
@@ -625,3 +645,4 @@ static void EditPerson(Person[] myPersons, PersonUtility personUtility, PersonRe
     }
     file.SavePerson(myPersons);
 }
+
