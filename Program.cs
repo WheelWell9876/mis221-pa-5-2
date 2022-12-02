@@ -149,7 +149,7 @@ static bool ExistingCustomerMenu(Movie[] myMovies, Payment[] myPayments, Person[
                         CustomerOption = true;
                         break;
                     case "5":
-                        paymentReports.RentalsPerTitle(myPayments, paymentUtility, file);
+                        movieReports.PrintByTitle(myMovies, movieUtility, file);
                         CustomerOption = true;
                         break;
                     case "6":
@@ -331,7 +331,8 @@ static bool AccessReports(Movie[] myMovies, Payment[] myPayments, Person[] myPer
         System.Console.WriteLine("14. Total revenue.");
         System.Console.WriteLine("15. Print all persons.");
         System.Console.WriteLine("16. Total persons.");
-        System.Console.WriteLine("17. Exit to Admin menu.");
+        System.Console.WriteLine("17. Search for movie ID. (binary search)");
+        System.Console.WriteLine("18. Exit to Admin menu.");
         switch(Console.ReadLine())
         {
             case "1":
@@ -399,6 +400,10 @@ static bool AccessReports(Movie[] myMovies, Payment[] myPayments, Person[] myPer
                 AdminOption = true;
                 break;
             case "17":
+                BinarySearch(myPersons);
+                AdminOption = true;
+                break;
+            case "18":
                 AdminOption = false;
                 break;
             default:
@@ -657,4 +662,39 @@ static void EditPerson(Person[] myPersons, PersonUtility personUtility, PersonRe
         myPersons[index].SetEmail(Console.ReadLine());
     }
     file.SavePerson(myPersons);
+}
+
+static int BinarySearch(Person[] myPersons)
+{
+    int find = -1;
+    int first = 0;
+    int last = Person.GetCount() - 1;
+    int middle;
+    bool found = false;
+
+    while(!found && first <= last)
+    {
+        middle = (first + last) / 2;
+        if(myPersons[middle].GetPersonID() == Person.GetCount())
+        {
+            found = true;
+            find = middle;
+        }
+        else
+        {
+            if(myPersons[middle].GetPersonID() > Person.GetCount())
+            {
+                last = middle - 1;
+            }
+            else
+            {
+                first = middle + 1;
+            }
+        }
+        
+    }
+    System.Console.WriteLine("**********");
+    System.Console.WriteLine(find);
+    System.Console.WriteLine("**********");
+    return find;
 }

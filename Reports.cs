@@ -168,37 +168,6 @@ namespace calculations
             
         }
 
-        static int BinarySearch(Movie[] myMovies, MovieUtility movieUtility, MovieReports movieReports, int searchVal)
-        {
-            int find = -1;
-            int first = 0;
-            int last = Movie.GetCount() - 1;
-            int middle;
-            bool found = false;
-
-            while(!found && first <= last)
-            {
-                middle = (first + last) / 2;
-                if(myMovies[middle].GetMovieID() == searchVal)
-                {
-                    found = true;
-                    find = middle;
-                }
-                else
-                {
-                    if(myMovies[middle].GetMovieID() > searchVal)
-                    {
-                        last = middle - 1;
-                    }
-                    else
-                    {
-                        first = middle + 1;
-                    }
-                }
-            }
-            return find;
-        }
-
     }
 
     //////////////PAYMENT REPORT CLASS//////////////
