@@ -29,11 +29,12 @@ StartMenu(myMovies, myPayments, myPersons, movieUtility, paymentUtility, personU
 
 
 //WELCOME TA'S!
-/////TABLE OF CONTENTS/////
+/////Here are my extras/////
 
-//Start Menu line:      33
-//Customer Rents menu:
-//Admin Menu line:      208
+//Customer Login
+//Different methods of displaying menu other than ID
+//Rentals per title
+//Rent movie WORKS, it can sometimes fail with different users, but it can still print a new transaction
 
 static bool StartMenu(Movie[] myMovies, Payment[] myPayments, Person[] myPersons, MovieUtility movieUtility, PaymentUtility paymentUtility, PersonUtility personUtility, MovieReports movieReports, PaymentReports paymentReports, PersonReports personReports, FileItem file)
 {
@@ -41,6 +42,19 @@ static bool StartMenu(Movie[] myMovies, Payment[] myPayments, Person[] myPersons
     bool SelectOption = true;
     while(SelectOption == true)
     {
+        System.Console.WriteLine();
+        System.Console.WriteLine(@"                              _____          ___           ___                    ___           ___           ___                 ");
+        System.Console.WriteLine(@"      ___        ___         /  /::\        /  /\         /  /\                  /__/\         /  /\         /  /\          ___   ");
+        System.Console.WriteLine(@"     /__/\      /  /\       /  /:/\:\      /  /:/_       /  /::\                |  |::\       /  /::\       /  /::\        /  /\  ");
+        System.Console.WriteLine(@"     \  \:\    /  /:/      /  /:/  \:\    /  /:/ /\     /  /:/\:\               |  |:|:\     /  /:/\:\     /  /:/\:\      /  /:/  ");
+        System.Console.WriteLine(@"      \  \:\  /__/::\     /__/:/ \__\:|  /  /:/ /:/_   /  /:/  \:\            __|__|:|\:\   /  /:/~/::\   /  /:/~/:/     /  /:/   ");
+        System.Console.WriteLine(@"  ___  \__\:\ \__\/\:\__  \  \:\ /  /:/ /__/:/ /:/ /\ /__/:/ \__\:\          /__/::::| \:\ /__/:/ /:/\:\ /__/:/ /:/___  /  /::\   ");
+        System.Console.WriteLine(@" /__/\ |  |:|    \  \:\/\  \  \:\  /:/  \  \:\/:/ /:/ \  \:\ /  /:/          \  \:\~~\__\/ \  \:\/:/__\/ \  \:\/:::::/ /__/:/\:\  ");
+        System.Console.WriteLine(@" \  \:\|  |:|     \__\::/   \  \:\/:/    \  \::/ /:/   \  \:\  /:/            \  \:\        \  \::/       \  \::/~~~~  \__\/  \:\ ");
+        System.Console.WriteLine(@"  \  \:\__|:|     /__/:/     \  \::/      \  \:\/:/     \  \:\/:/              \  \:\        \  \:\        \  \:\           \  \:\");
+        System.Console.WriteLine(@"   \__\::::/      \__\/       \__\/        \  \::/       \  \::/                \  \:\        \  \:\        \  \:\           \__\/");
+        System.Console.WriteLine(@"       ~~~~                                 \__\/         \__\/                  \__\/         \__\/         \__\/                ");
+        System.Console.WriteLine(" ");
         System.Console.WriteLine("Welcome to Video Mart!");
         System.Console.WriteLine("Please select an option below.");
         System.Console.WriteLine("1. Existing Customer");
@@ -63,6 +77,9 @@ static bool StartMenu(Movie[] myMovies, Payment[] myPayments, Person[] myPersons
                 SelectOption = true;
                 break;
             case "4":
+                System.Console.WriteLine("***********************************");
+                System.Console.WriteLine("    Goodbye! Come again soon!");
+                System.Console.WriteLine("***********************************");
                 SelectOption = false;
                 break;
             default:
@@ -326,7 +343,7 @@ static bool AccessReports(Movie[] myMovies, Payment[] myPayments, Person[] myPer
                 AdminOption = true;
                 break;
             case "3":
-                paymentReports.RentalsPerTitle(myPayments, paymentUtility, file);
+                movieReports.PrintByTitle(myMovies, movieUtility, file);
                 AdminOption = true;
                 break;
             case "4":
@@ -617,9 +634,9 @@ static void EditPayment(Payment[] myPayments, PaymentUtility paymentUtility, Pay
         System.Console.WriteLine("What should the genre be?");
         myPayments[index].SetGenre(Console.ReadLine());
         System.Console.WriteLine("What should the last purchased date be? (type: MM/DD/YYYY)");
-        myPayments[index].SetBuy(paymentUtility.PromptDateOnly());
+        myPayments[index].SetBuy(paymentUtility.PromptDateOnly(myPayments));
         System.Console.WriteLine("What should the last returned date be? (type: MM/DD/YYYY)");
-        myPayments[index].SetReturn(paymentUtility.PromptDateOnly());
+        myPayments[index].SetReturn(paymentUtility.PromptDateOnly(myPayments));
     }
     file.SavePayment(myPayments);
 }

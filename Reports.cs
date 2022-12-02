@@ -299,23 +299,23 @@ namespace calculations
 
         static void ProcessBreak3(ref string currTitle, ref int count, ref int i, Payment[] myPayments)
         {
-            int[] saveCount = new int [Payment.GetCount()];
+            int[] save = new int [Payment.GetCount()];
             string[] title = new string[Payment.GetCount()];
             currTitle = myPayments[i].GetTitle();
             title[i] = currTitle;
             count = 1;
-            for(int j = 0; j < saveCount.Length + 1; j++)
+            for(int j = 0; j < save.Length + 1; j++)
             {
                 int min = j;
-                for(int k = 0; k < saveCount.Length; k++)
+                for(int k = 0; k < save.Length; k++)
                 {
-                    if(saveCount[k] < saveCount[min])
+                    if(save[k] > save[min])
                     {
                         min = j;
                     }
                     if(min != j)
                     {
-                        SwapTwo(saveCount, min, j);
+                        SwapTwo(save, min, j);
                     }
                 }
                 for(int m = 0; m < 5; m++)

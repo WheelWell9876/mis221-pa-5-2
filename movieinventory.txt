@@ -3,12 +3,13 @@
 3#Santa Claus#Horror#2001#9.99#10#True#False
 4#American Psycho#Other#2019#9.99#3#True#False
 5#Car Go Fast 42#Action#1981#9.99#6#True#False
-6#The Sopranos#Horror#2020#9.99#7#True#False
+6#The Sopranos#Horror#2020#9.99#7#False#False
 7#The Dark Knight#Action#2008#9.99#8#True#False
 8#Fight Club#Action#1999#9.99#9#True#False
 9#The Matrix#Sci-Fi#1999#9.99#2#True#False
 10#Interstellar#Sci-Fi#2014#9.99#6#True#False
-11#City Lights#Comedy#1931#9.99#5#True#False
+11#City Lights#Comedy#1931#9.99#5#False#False
 12#Toy Story#Comedy#1995#9.99#8#True#False
 13#Inside Out#Comedy#2015#9.99#3#True#False
 14#Finding Nemo#Comedy#2003#9.99#4#True#False
+15#The Big Short#Other#2015#9.99#8#False#False

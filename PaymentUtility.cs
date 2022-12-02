@@ -114,7 +114,7 @@ namespace paymentUtility
             myPayments[y] = temp;
         }
 
-        public DateOnly PromptDateOnly()
+        public DateOnly PromptDateOnly(Payment[] myPayments)
         {
             Console.WriteLine("Day: ");
             var day = Convert.ToInt32(Console.ReadLine());
